@@ -21,7 +21,8 @@ namespace RoleBasedAuthentication.Services
         private List<User> _users = new List<User>{
             new User {Id = 1, FirstName="John", MiddleName = "L", LastName = "Smith", UserName = "admin", Password = "admin", Role = Role.Admin},
             new User {Id = 2, FirstName="Henrietta", MiddleName = "S", LastName = "Johnson", UserName = "user", Password = "user", Role = Role.User},
-            new User {Id = 3, FirstName="Branden", MiddleName = "S", LastName = "Coker", UserName = "bcoker", Password = "test", Role = Role.Admin}
+            new User {Id = 3, FirstName="Branden", MiddleName = "S", LastName = "Coker", UserName = "bcoker", Password = "test", Role = Role.Admin},
+            new User {Id = 4, FirstName="Aubrey", MiddleName = "J", LastName = "Coker", UserName = "aubs1", Password = "test", Role = Role.Readonly}
         };
 
         private readonly AppSettings _appsettings;

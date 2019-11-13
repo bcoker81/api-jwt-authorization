@@ -40,6 +40,7 @@ namespace RoleBasedAuthentication.Controllers
         }
 
         [HttpGet("{id}")]
+        [Authorize(Roles = Role.Readonly)]
         public IActionResult GetById(int id)
         {
             var user = _userService.GetById(id);
