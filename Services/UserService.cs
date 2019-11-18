@@ -4,8 +4,10 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using RoleBasedAuthentication.Context;
 using RoleBasedAuthentication.Entities;
 
 namespace RoleBasedAuthentication.Services
@@ -24,17 +26,21 @@ namespace RoleBasedAuthentication.Services
             new User {Id = 3, FirstName="Branden", MiddleName = "S", LastName = "Coker", UserName = "bcoker", Password = "test", Role = Role.Admin},
             new User {Id = 4, FirstName="Aubrey", MiddleName = "J", LastName = "Coker", UserName = "aubs1", Password = "test", Role = Role.Readonly}
         };
-
+        private readonly PN69_User_RepositoryContext _context;
         private readonly AppSettings _appsettings;
 
-        public UserService(IOptions<AppSettings> appsettings)
+        public UserService(IOptions<AppSettings> appsettings, PN69_User_RepositoryContext context)
         {
+            _context = context;
             _appsettings = appsettings.Value;
         }
 
         public User Authenticate(string username, string password)
         {
             var user = _users.SingleOrDefault(x => x.UserName == username && x.Password == password);
+            // var user = _context.CoreUser.Where(x => x.Email == username)
+            // .Include(x => x.Account).SingleOrDefault();
+            
 
             //return null is user is now found.
             if (user == null)

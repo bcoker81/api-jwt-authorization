@@ -57,7 +57,6 @@ namespace RoleBasedAuthentication.Controllers
                 return Forbid();
             }
             return Ok(user);
-
         }
     }
 }
